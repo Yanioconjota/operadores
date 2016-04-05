@@ -40,35 +40,16 @@ var getRepo = function(){
    
     area : function( form ) {
       var area, base, altura;
-      base = form[0].base.value;
-      altura = form[0].altura.value;
-
-      base = parseInt(base);
-      altura = parseInt(altura);
-      area = (base * altura) / 2 ;
-
       console.log("El area del triangulo es:" + area);
     },   
 
     paroimpar : function( form ) {
-      var numero, cadena;
-      numero = form[0].numero.value;
-
-      numero = parseInt(numero);
-      resultado = numero % 2 == 0 ? 'par' : 'impar';
-
+      var numero, cadena, resultado
       console.log("El numero es " + resultado );
     },
 
     aumentar : function( form ) {
       var numero, fontSize, area;
-
-      area = $( form[0].texto );
-      fontSize = parseInt( area.css('font-size').replace('px','') );
-      fontSize += fontSize;
-
-      area.css('font-size', fontSize );
-
     }
  }
 
@@ -78,10 +59,6 @@ $(document).ready(function(){
   
   var repo = getRepo();
 
-  $('input[type="submit"]').bind('click', function(){
-    var form = $(this).closest('form');
-    repo[form.attr('data-action')](form);
-  } );
 
 } );
 
