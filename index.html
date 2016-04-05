@@ -1,0 +1,88 @@
+<!-- AREA de un triangulo base x altura / 2 -->
+<form action="javascript:void(0)" data-action="area">
+  <input type="number" name="base" value="0"/>
+  <input type="number" name="altura" value="0"/>
+  <input type="submit" value="CALCULAR">
+</form>
+
+<br>
+
+<!-- PAR O IMPAR verificar si numero es par o impar-->
+<form action="javascript:void(0)" data-action="paroimpar">
+  <input type="number" name="numero" value="0" />
+  <input type="submit" value="COMPROBAR">
+</form>
+
+
+<br>
+
+<!-- AUMENTAR incrementar el font size del textarea al doble de su tamaño-->
+<form action="javascript:void(0)" data-action="aumentar" style="float:left">
+  <textarea style="font-size:10px" name="texto">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</textarea>
+  <input type="submit" value="AUMENTAR">
+</form>
+
+<br>
+
+
+<!-- RANDOM COLOR CREAR UN -->
+<form action="javascript:void(0)" data-action="paroimpar">
+  <input type="number" name="numero" placeholder="numero"/>
+  <input type="submit" value="COMPROBAR">
+</form>
+
+
+<script type="text/javascript">
+
+var getRepo = function(){
+
+  return {
+   
+    area : function( form ) {
+      var area, base, altura;
+      base = form[0].base.value;
+      altura = form[0].altura.value;
+
+      base = parseInt(base);
+      altura = parseInt(altura);
+      area = (base * altura) / 2 ;
+
+      console.log("El area del triangulo es:" + area);
+    },   
+
+    paroimpar : function( form ) {
+      var numero, cadena;
+      numero = form[0].numero.value;
+
+      numero = parseInt(numero);
+      resultado = numero % 2 == 0 ? 'par' : 'impar';
+
+      console.log("El numero es " + resultado );
+    },
+
+    aumentar : function( form ) {
+      var numero, fontSize, area;
+
+      area = $( form[0].texto );
+      fontSize = parseInt( area.css('font-size').replace('px','') );
+      fontSize += fontSize;
+
+      area.css('font-size', fontSize );
+
+    }
+ }
+
+}
+
+$(document).ready(function(){
+  
+  var repo = getRepo();
+
+  $('input[type="submit"]').bind('click', function(){
+    var form = $(this).closest('form');
+    repo[form.attr('data-action')](form);
+  } );
+
+} );
+
+</script>
