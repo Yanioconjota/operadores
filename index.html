@@ -64,6 +64,11 @@ $(document).ready(function(){
   
   var repo = getRepo();
 
+  $("input[type='submit']").bind('click',function(){
+    var form = $(this).parent();
+    repo[form.attr('data-action')](form);
+  });
+
 } );
 
 </script>
